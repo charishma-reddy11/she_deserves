@@ -11,7 +11,7 @@ class Category(models.Model):
 class Destination(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='destinations/')
+    image = models.ImageField(upload_to='static/images/')
     price = models.DecimalField(max_digits=10, decimal_places=2, default=5000)
     seats_filled = models.IntegerField(default=0) 
 

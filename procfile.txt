@@ -1,0 +1,1 @@
+web:gunicorn she_deserves(1).wsgi

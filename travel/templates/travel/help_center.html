@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Help Center | She Deserves{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5 py-4 bg-white shadow-sm rounded-4">
+        <h1 class="display-5 fw-bold" style="font-family: 'Playfair Display', serif; color: var(--primary-color);">How can we help you?</h1>
+        <p class="text-muted">Find answers to common questions about booking, safety, and community guidelines.</p>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="input-group mb-3 px-3">
+                    <span class="input-group-text bg-white border-end-0 rounded-start-pill"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" class="form-control border-start-0 rounded-end-pill py-2" placeholder="Search for articles...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3 class="fw-bold mb-4"><i class="fas fa-question-circle text-primary me-2"></i> Frequently Asked Questions</h3>
+            
+            <div class="accordion accordion-flush shadow-sm rounded-4 overflow-hidden" id="faqAccordion">
+                
+                <div class="accordion-item border-bottom">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-600" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Is this platform only for women?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Yes, <strong>She Deserves</strong> is a dedicated space for female travelers. Our verification process ensures that our community and group trips remain safe and exclusive to women.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-bottom">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-600" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            How do I book a safe ride or trip?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Go to the <strong>Destinations</strong> page, select your preferred location, and click on 'Book Now'. You will need to verify your gender during the payment process for safety.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-bottom">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-600" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            What is the cancellation policy?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            You can cancel your booking through the 'My Bookings' section. If cancelled 24 hours before the trip, a full refund will be initiated to your original payment method.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-600" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            How can I contact emergency support?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            During an active trip, you will find an 'SOS' button in your dashboard which connects you immediately to our 24/7 support team and local authorities.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-5 text-center p-4 bg-primary bg-opacity-10 rounded-4">
+                <h5 class="fw-bold">Still have questions?</h5>
+                <p class="text-muted small">Our support team is available 24/7 to assist you with any issues.</p>
+                <a href="mailto:support@shedeserves.com" class="btn btn-primary rounded-pill px-4">Contact Support</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: #f8f9fa;
+        color: var(--brand-blue);
+        box-shadow: none;
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(0,0,0,.125);
+    }
+    .fw-600 { font-weight: 600; }
+</style>
+{% endblock %}

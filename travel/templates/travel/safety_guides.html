@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Safety Guides | She Deserves{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="font-family: 'Playfair Display', serif; color: var(--primary-color);">Wander Fearlessly</h1>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+            Your safety is our top priority. We've curated these essential safety guides to ensure your solo journey is as secure as it is memorable.
+        </p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 transition-hover">
+                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                    <i class="fas fa-map-marked-alt text-primary fs-3"></i>
+                </div>
+                <h4 class="fw-bold">Smart Planning</h4>
+                <p class="text-muted">Research your destination's local customs and safe zones. Always download offline maps (Google Maps) before you land.</p>
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Share itinerary with family</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Book first night stay in advance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 transition-hover">
+                <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                    <i class="fas fa-satellite-dish text-info fs-3"></i>
+                </div>
+                <h4 class="fw-bold">Stay Connected</h4>
+                <p class="text-muted">Always have a local SIM card with active data. Keep a power bank fully charged in your day bag.</p>
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Save emergency contact as SOS</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Use a reputable VPN</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100 p-4 transition-hover">
+                <div class="bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 60px; height: 60px;">
+                    <i class="fas fa-first-aid text-danger fs-3"></i>
+                </div>
+                <h4 class="fw-bold">Emergency Prep</h4>
+                <p class="text-muted">Memorize basic phrases in the local language and know the location of the nearest embassy or hospital.</p>
+                <ul class="list-unstyled small text-muted">
+                    <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Carry a physical copy of ID</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Keep cash in two different places</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 p-5 bg-dark rounded-4 text-white text-center shadow-lg">
+        <h2 class="fw-bold mb-3" style="font-family: 'Playfair Display', serif;">Need Real-time Help?</h2>
+        <p class="mb-4 opacity-75">Join our active community of female travelers to get live updates and verified safety alerts.</p>
+        <a href="{% url 'accounts1:login' %}" class="btn btn-primary px-5 py-3 rounded-pill fw-bold">Join the Community</a>
+    </div>
+</div>
+
+<style>
+    .transition-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+</style>
+{% endblock %}

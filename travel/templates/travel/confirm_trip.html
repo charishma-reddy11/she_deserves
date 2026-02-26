@@ -1,0 +1,60 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 p-4" style="border-radius: 20px;">
+                <div class="text-center mb-4">
+                    <div class="badge bg-primary mb-2">Step 1: Passenger Details</div>
+                    <h3 class="fw-bold">Confirm Your Booking</h3>
+                    <p class="text-muted small">📍 Trip to {{ destination.name }}</p>
+                </div>
+
+                <form action="{% url 'travel:process_payment' destination.id %}" method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-secondary">PASSENGER NAME</label>
+                        <input type="text" name="passenger_name" class="form-control form-control-lg" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-label fw-bold small text-secondary">AGE</label>
+                            <input type="number" name="age" class="form-control" placeholder="Years" required>
+                        </div>
+                        <div class="form-check mb-4 p-3 border rounded bg-light">
+    <input class="form-check-input ms-0 me-2" type="checkbox" name="female_verification" id="verifyFemale" required>
+    <label class="form-check-label fw-bold text-danger" for="verifyFemale" style="font-size: 0.9rem;">
+        I confirm that the passenger is a female. 👩‍🦰
+    </label>
+    <div class="form-text mt-1 text-muted">
+        (She Deserves policy: Our rides are exclusively for women safety.)
+    </div>
+</div>
+                        <div class="col">
+                            <label class="form-label fw-bold small text-secondary">PHONE</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="Mobile Number" required>
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-3 rounded mb-4 d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted d-block small">Fare Amount</span>
+                            <span class="h5 fw-bold mb-0 text-success">₹{{ destination.price|default:"999" }}</span>
+                        </div>
+                        <i class="text-muted small">Incl. all taxes</i>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg fw-bold shadow-sm">
+                            💳 Pay & Confirm Ride
+                        </button>
+                        <a href="{% url 'travel:home' %}" class="btn btn-link text-secondary">Cancel Booking</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

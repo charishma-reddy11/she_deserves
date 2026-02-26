@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        font-family: 'Poppins', sans-serif;
+        background-color: #ffffff;
+    }
+
+    .split-screen {
+        display: flex;
+        flex-direction: row;
+        height: 100vh; 
+        width: 100%;
+    }
+
+    .left-side {
+        flex: 1.2; 
+        position: relative;
+        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                    url("{% static 'images/lady.jpg' %}"); 
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .quote-overlay {
+        text-align: center;
+        max-width: 80%;
+    }
+
+    .quote-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.3rem;
+        color: #ffffff;
+        font-style: italic;
+        text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+        transition: opacity 0.8s ease-in-out;
+    }
+
+    .right-side {
+        flex: 0.8; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        padding: 40px;
+        overflow-y: auto;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 380px;
+        padding: 20px 0;
+    }
+
+    .brand-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .brand-header h1 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        color: #2c5e50;
+        font-size: 2.8rem;
+        margin: 0;
+    }
+
+    .brand-header p {
+        color: #c5a059;
+        font-weight: 600;
+        letter-spacing: 1px;
+        margin-top: 5px;
+    }
+
+    .error-box {
+        background-color: #fff5f5;
+        color: #e53e3e;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #feb2b2;
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .input-box {
+        margin-bottom: 22px;
+    }
+
+    .input-box label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #2c5e50;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .input-box input {
+        width: 100%;
+        padding: 15px;
+        border: 1.5px solid #f0f0f0;
+        border-radius: 12px;
+        font-size: 1rem;
+        background: #fafafa;
+        box-sizing: border-box;
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 16px;
+        background-color: #2c5e50;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-login:hover {
+        background-color: #c5a059;
+    }
+
+    .footer-links {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a {
+        color: #2c5e50;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 2px solid #c5a059;
+    }
+
+    @media (max-width: 768px) {
+        .split-screen { flex-direction: column; height: auto; }
+        .left-side { height: 40vh; flex: none; }
+        .right-side { height: auto; padding: 40px 20px; flex: none; }
+    }
+</style>
+
+<div class="split-screen">
+    <div class="left-side">
+        <div class="quote-overlay">
+            <p class="quote-text" id="joyful-quote">“Joyful souls, boundless journeys.”</p>
+        </div>
+    </div>
+
+    <div class="right-side">
+        <div class="login-container">
+            <div class="brand-header">
+                <h1>She Deserves</h1>
+                <p>Whatever she wants.</p>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if error %}
+                    <div class="error-box">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-box">
+                    <div class="d-flex justify-content-between">
+                        <label>Password</label>
+                        <a href="#" style="font-size: 0.7rem; color: #aaa; text-decoration: none;">Forgot?</a>
+                    </div>
+                    <input type="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-login">Login to Wander</button>
+
+                <div class="footer-links">
+                    <p>New traveler? <a href="{% url 'accounts1:register' %}">Create Account</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const joyfulQuotes = [
+        "“Joyful souls, boundless journeys.”",
+        "“Happy vibes & a group tribe.”",
+        "“Making memories with the best ladies.”",
+        "“Every journey is a celebration.”",
+        "“Her smile is her best travel accessory.”"
+    ];
+
+    let qIdx = 0;
+    function rotateQuote() {
+        const qEl = document.getElementById('joyful-quote');
+        if (qEl) {
+            qEl.style.opacity = 0;
+            setTimeout(() => {
+                qIdx = (qIdx + 1) % joyfulQuotes.length;
+                qEl.innerText = joyfulQuotes[qIdx];
+                qEl.style.opacity = 1;
+            }, 800);
+        }
+    }
+    setInterval(rotateQuote, 4000);
+</script>
+
+{% endblock %}

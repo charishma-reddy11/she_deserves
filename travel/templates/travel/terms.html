@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms of Use | She Deserves{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold" style="font-family: 'Playfair Display', serif;">Terms of Use</h1>
+                <p class="text-muted">Effective Date: February 2026</p>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                <div class="prose">
+                    <section class="mb-5">
+                        <h4 class="fw-bold text-dark mb-3">1. Acceptance of Terms</h4>
+                        <p class="text-muted" style="line-height: 1.8;">
+                            By accessing <strong>She Deserves</strong>, you agree to comply with our community standards and legal terms. Our platform is designed to provide a safe space for women; any misuse of this platform will result in account suspension.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h4 class="fw-bold text-dark mb-3">2. User Eligibility & Verification</h4>
+                        <p class="text-muted" style="line-height: 1.8;">
+                            Certain features of our site, including trip bookings and community forums, are exclusive to female-identifying users. We reserve the right to request verification to maintain the safety of our travelers.
+                        </p>
+                    </section>
+
+                    <section class="mb-5">
+                        <h4 class="fw-bold text-dark mb-3">3. Booking & Cancellations</h4>
+                        <ul class="text-muted" style="line-height: 1.8;">
+                            <li>Payments are processed securely via third-party providers.</li>
+                            <li>Cancellations made 24 hours prior to the trip are eligible for a full refund.</li>
+                            <li>Late cancellations may incur a fee as per the destination's specific policy.</li>
+                        </ul>
+                    </section>
+
+                    <section class="mb-5">
+                        <h4 class="fw-bold text-dark mb-3">4. Prohibited Conduct</h4>
+                        <p class="text-muted" style="line-height: 1.8;">
+                            Users are prohibited from posting offensive content, harassing other members, or using the platform for unauthorized commercial purposes.
+                        </p>
+                    </section>
+
+                    <section class="mt-5 border-top pt-4">
+                        <p class="text-muted small">
+                            Questions about our terms? Contact us at 
+                            <a href="mailto:legal@shedeserves.com" class="text-primary fw-bold text-decoration-none">legal@shedeserves.com</a>
+                        </p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="{% url 'travel:home' %}" class="btn btn-primary rounded-pill px-5">I Understand</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+                <i class="fas fa-info-circle me-2"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark">My Registered Trips 🎒</h2>
+        <div class="text-end">
+            <span class="badge bg-primary rounded-pill mb-1">Total Bookings: {{ user_bookings|length }}</span><br>
+            <a href="{% url 'travel:home' %}" class="btn btn-outline-primary btn-sm px-3">Book More Places</a>
+        </div>
+    </div>
+
+    {% if user_bookings %}
+    <div class="table-responsive shadow-sm rounded mb-5">
+        <table class="table table-hover align-middle bg-white mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Trip Details</th>
+                    <th>Passenger</th>
+                    <th>Price</th>
+                    <th>Booked On</th>
+                    <th>Status</th>
+                    <th>Action</th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in user_bookings %}
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            {% if booking.destination.image %}
+                                <img src="{{ booking.destination.image.url }}" class="rounded me-2 shadow-sm" style="width: 50px; height: 50px; object-fit: cover;">
+                            {% endif %}
+                            <div>
+                                <span class="fw-bold text-secondary d-block">{{ booking.destination.name }}</span>
+                                <small class="badge bg-light text-dark border">{{ booking.destination.category.name }}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="text-muted">{{ booking.passenger_name }}</span></td>
+                    <td>₹{{ booking.destination.price|default:"999" }}</td>
+                    <td><small class="text-muted">{{ booking.booked_at|date:"M d, Y" }}</small></td>
+                    <td><span class="badge bg-success-subtle text-success border border-success px-3">Confirmed</span></td>
+                    <td>
+                        <form action="{% url 'travel:cancel_ride' booking.id %}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking for {{ booking.passenger_name }}?')">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-times-circle me-1"></i> Cancel
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5 shadow-sm rounded bg-light border mb-5">
+        <h1 class="display-4 text-muted">🏜️</h1>
+        <h4 class="text-muted mt-3">No active trips found!</h4>
+        <p class="text-secondary">Ready for a new adventure? Explore our curated safe destinations.</p>
+        <a href="{% url 'travel:home' %}" class="btn btn-primary px-5 rounded-pill shadow">Browse Now</a>
+    </div>
+    {% endif %}
+
+    <hr class="my-5 opacity-25">
+
+   <div class="card border-0 shadow-sm text-white p-4 mb-5" style="border-radius: 15px; background: linear-gradient(45deg, #0d6efd, #0dcaf0);">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4 class="fw-bold"><i class="fas fa-shield-alt me-2"></i> Safety First!</h4>
+                <p class="mb-0 opacity-75">Share your live location with your emergency contacts for every trip. Your safety is our top priority at She Deserves.</p>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                <a href="{% url 'travel:safety_guides' %}" class="btn btn-light text-primary fw-bold px-4 rounded-pill">View Safety Guide</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-5">
+        <h5 class="fw-bold mb-3">Explore More Categories</h5>
+        <div class="d-flex flex-wrap gap-2">
+            {% for cat in categories %}
+                <a href="{% url 'travel:category_view' cat.slug %}" class="btn btn-outline-secondary rounded-pill px-4">
+                    {{ cat.name }}
+                </a>
+            {% empty %}
+                <p class="text-muted small">No categories found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-5">
+        </div>
+</div>
+
+<style>
+    .rounded-4 { border-radius: 1.25rem; }
+    .bg-success-subtle { background-color: #d1e7dd; }
+    .card:hover { transform: scale(1.01); transition: 0.3s ease-in-out; }
+    .table thead th { font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; }
+</style>
+{% endblock %}

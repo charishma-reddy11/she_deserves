@@ -1,0 +1,30 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4>Exploring: <span class="text-primary">{{ category.name }}</span></h4>
+        <a href="{% url 'travel:home' %}" class="btn btn-sm btn-outline-secondary">Back to All</a>
+    </div>
+
+    <div class="row">
+        {% for dest in destinations %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
+                <img src="{{ dest.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ dest.name }}</h5>
+                    <p class="badge bg-info text-dark">{{ dest.seats_filled }} / 3 Booked</p>
+                    <div class="d-grid">
+                        <a href="{% url 'travel:book_ride' dest.id %}" class="btn btn-dark">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="text-center w-100 mt-5">
+            <p class="text-muted">No trips found in this category yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

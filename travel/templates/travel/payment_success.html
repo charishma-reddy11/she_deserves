@@ -1,0 +1,44 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <div class="card shadow-lg border-0 p-4">
+        <div class="text-success mb-3">
+            <i class="fas fa-check-circle fa-4x"></i>
+        </div>
+        <h2 class="fw-bold text-dark">Booking Successful, {{ name }}! 🎉</h2>
+        <p class="text-muted">Your seat for <strong>{{ destination.name }}</strong> is confirmed.</p>
+        <hr>
+
+        <div class="text-start mt-4 px-3">
+            <h5 class="fw-bold mb-3 text-primary"><i class="fas fa-info-circle me-2"></i>Travel Instructions & Guidelines:</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light mb-2 rounded border-0">
+                    <strong>1. Identity Proof:</strong> Please carry a valid Govt. Photo ID (Aadhar/Voter ID) for verification.
+                </li>
+                <li class="list-group-item bg-light mb-2 rounded border-0">
+                    <strong>2. Reporting Time:</strong> Reach the boarding point at least 20 minutes before the scheduled time.
+                </li>
+                <li class="list-group-item bg-light mb-2 rounded border-0">
+                    <strong>3. Safety First:</strong> Since this is a <em>She Deserves</em> exclusive ride, sharing live location with family is encouraged.
+                </li>
+                <li class="list-group-item bg-light mb-2 rounded border-0">
+                    <strong>4. Luggage:</strong> Maximum 10kg luggage per passenger is allowed.
+                </li>
+                <li class="list-group-item bg-light mb-2 rounded border-0">
+                    <strong>5. Emergency:</strong> In case of any issues, contact our 24/7 Helpline: <strong>+91 98765 43210</strong>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <a href="{% url 'travel:registered_trips' %}" class="btn btn-primary px-4 me-2">View My Trips</a>
+            <a href="{% url 'travel:home' %}" class="btn btn-outline-secondary">Go to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

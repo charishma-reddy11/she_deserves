@@ -1,0 +1,8 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+<div class="text-center mt-5">
+    <h1 class="text-danger">Sorry! No Seats Available</h1>
+    <p>All 3 seats for this trip have been booked. Please try another destination.</p>
+    <a href="{% url 'travel:home' %}" class="btn btn-primary">Try Other Places</a>
+</div>
+{% endblock %}

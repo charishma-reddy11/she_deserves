@@ -1,0 +1,3 @@
+EMAIL_HOST_USER='charishma1107@gmail.com'
+EMAIL_HOST_PASSWORD='cherry@123'
+DB_PASSWORD=''
